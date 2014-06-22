@@ -181,6 +181,8 @@ hljs.initHighlightingOnLoad();
 <body>
 <h1>Predicting exercise activity</h1>
 
+<h2>Source data</h2>
+
 <p>The data come from <a href="http://groupware.les.inf.puc-rio.br/har">http://groupware.les.inf.puc-rio.br/har</a>.</p>
 
 <p>Read training and test data from csv source files</p>
@@ -189,6 +191,8 @@ hljs.initHighlightingOnLoad();
 
 ptest &lt;- read.csv(&quot;C:/Users/piisptau/Downloads/pml-testing.csv&quot;, header=TRUE, stringsAsFactors=F)
 </code></pre>
+
+<h2>Data preparation</h2>
 
 <p>Reduce the training and test sets by selecting only the following 54 columns. Columns with NA values are omitted and only numeric columns are included in the reduced set.</p>
 
@@ -226,6 +230,8 @@ validationSet = trainbaseset[-trainIndex,]
 testSet = cbind(testing, classe)
 </code></pre>
 
+<h2>Making the model</h2>
+
 <p>Make a random forest model with 4-fold cross validation</p>
 
 <pre><code class="r">modFitRandFor &lt;- train(trainingSet$classe ~.,data = trainingSet,method=&quot;rf&quot;, trControl=trainControl(method=&quot;cv&quot;, number=4))
@@ -260,6 +266,8 @@ testSet = cbind(testing, classe)
 ## Accuracy was used to select the optimal model using  the largest value.
 ## The final value used for the model was mtry = 27.
 </code></pre>
+
+<h2>Model results</h2>
 
 <p>Test the model on the validation set and get model accuracy from confusionMatrix output as 0.997. </p>
 

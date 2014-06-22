@@ -1,6 +1,9 @@
 Predicting exercise activity
 ========================================================
 
+Source data
+-----------
+
 The data come from http://groupware.les.inf.puc-rio.br/har.
 
 Read training and test data from csv source files
@@ -12,6 +15,8 @@ ptrain <- read.csv("C:/Users/piisptau/Downloads/pml-training.csv", header=TRUE, 
 ptest <- read.csv("C:/Users/piisptau/Downloads/pml-testing.csv", header=TRUE, stringsAsFactors=F)
 ```
 
+Data preparation
+----------------
 
 Reduce the training and test sets by selecting only the following 54 columns. Columns with NA values are omitted and only numeric columns are included in the reduced set.
 
@@ -59,6 +64,9 @@ classe = rep("x",20)
 testSet = cbind(testing, classe)
 ```
 
+Making the model
+----------------
+
 Make a random forest model with 4-fold cross validation
 
 
@@ -98,6 +106,9 @@ modFitRandFor
 ## Accuracy was used to select the optimal model using  the largest value.
 ## The final value used for the model was mtry = 27.
 ```
+
+Model results
+-------------
 
 Test the model on the validation set and get model accuracy from confusionMatrix output as 0.997. 
 
